@@ -10,12 +10,12 @@
 function initializeData() {
   if (!localStorage.getItem('tasks')) {
     localStorage.setItem('tasks', JSON.stringify(initialData)); 
-    localStorage.setItem('showSideBar', 'true')
+    localStorage.setItem('showSideBar', true); 
   } else {
     console.log('Data already exists in localStorage');
   }
 }
-
+initializeData()
 // TASK: Get elements from the DOM
 const elements = {
 
@@ -136,7 +136,7 @@ function addTaskToUI(task) {
   taskElement.textContent = task.title; // Modify as needed
   taskElement.setAttribute('data-task-id', task.id);
   
-  tasksContainer.appendChild(); 
+  tasksContainer.appendChild(taskElement); 
 }
 
 
@@ -227,9 +227,6 @@ function toggleTheme() {
  body.classList.toggle('dark-theme'); 
 }
 
-
-
-
 function openEditTaskModal(task) {
   // Set task details in modal inputs
   document.getElementById('taskTitleInput').value=task.title; 
@@ -244,15 +241,15 @@ saveChangesButton.addEventListener('click', () =>{
 })
 
   // Delete task using a helper function and close the task modal
-deleteTaskbutton.addEventListener('click', () =>
-)
-
-  toggleModal(true, elements.editTaskModal); // Show the edit task modal
+deleteTaskButton.addEventListener('click', () =>{
+deleteTask(task); 
+toggleModal(false, elements.editTaskModal); // Show the edit task modal
+})
 }
 
 function saveTaskChanges(taskId) {
   // Get new user inputs
-  
+  const newTitle=document.getElementById('edit-task-title-input').
 
   // Create an object with the updated task details
 
