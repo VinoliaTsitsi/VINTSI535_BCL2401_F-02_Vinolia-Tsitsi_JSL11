@@ -184,7 +184,7 @@ function setupEventListeners() {
 // Toggles tasks modal
 // Task: Fix bugs
 function toggleModal(show, modal = elements.modalWindow) {
-  modal.style.display = show ? 'block' => 'none'; 
+  modal.style.display = show ? 'block' : 'none'; 
 }
 
 /*************************************************************************************************************************************************
@@ -196,8 +196,10 @@ function addTask(event) {
 
   //Assign user input to the task object
     const task = {
-      
+      title: event.target.elements.title.value,
+      description: event.target.elements.description.value,
     };
+
     const newTask = createNewTask(task);
     if (newTask) {
       addTaskToUI(newTask);
@@ -210,24 +212,34 @@ function addTask(event) {
 
 
 function toggleSidebar(show) {
- 
+ const sidebar = document.getElementById('sidebar'); 
+ if (show){
+  sidebar.style.display= 'block';
+ }else{
+  sidebar.style.display= 'none';
+ }
 }
 
 function toggleTheme() {
- 
+
+ let body = body.document; 
+
+ body.classList.toggle('dark-theme'); 
 }
+
 
 
 
 function openEditTaskModal(task) {
   // Set task details in modal inputs
-  
+  document.getElementById('taskTitleInput').value=task.title; 
+  document.getElementById('taskDecriptiomInput').value=task.description; 
 
   // Get button elements from the task modal
-
-
+const saveChangesButton = document.getElementById('saveChangesButton');
+const deleteChangesButton = document.getElementById('deleteTaskButton');
   // Call saveTaskChanges upon click of Save Changes button
- 
+
 
   // Delete task using a helper function and close the task modal
 
