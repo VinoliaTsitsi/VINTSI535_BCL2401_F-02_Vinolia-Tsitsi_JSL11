@@ -65,7 +65,7 @@ function displayBoards(boards) {
 // TASK: Fix Bugs
 function filterAndDisplayTasksByBoard(boardName) {
   const tasks = getTasks(); // Fetch tasks from a simulated local storage function
-  const filteredTasks = tasks.filter(task => task.board = boardName);
+  const filteredTasks = tasks.filter(task => task.board === boardName);
 
   // Ensure the column titles are set outside of this function or correctly initialized before this function runs
 
@@ -239,10 +239,13 @@ function openEditTaskModal(task) {
 const saveChangesButton = document.getElementById('saveChangesButton');
 const deleteChangesButton = document.getElementById('deleteTaskButton');
   // Call saveTaskChanges upon click of Save Changes button
-
+saveChangesButton.addEventListener('click', () =>{
+  saveTaskChanges(task)
+})
 
   // Delete task using a helper function and close the task modal
-
+deleteTaskbutton.addEventListener('click', () =>
+)
 
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
 }
