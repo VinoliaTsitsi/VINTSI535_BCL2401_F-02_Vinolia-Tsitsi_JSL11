@@ -51,6 +51,8 @@ const elements = {
   editTaskDescInput: document.getElementById('edit-task-desc-input'),
   editTaskTitleInput: document.getElementById('edit-task-title-input'),
   editTaskForm: document.getElementById('edit-task-form'),
+  saveTaskChangesBtn: document.getElementById('save-task-changes-btn'),
+  deleteTaskBtn: document.getElementById('delete-task-btn'),
   }; 
 //Initialize activeBoard Varriable
 let activeBoard = ""
