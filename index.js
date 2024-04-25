@@ -18,8 +18,17 @@ function initializeData() {
 initializeData()
 // TASK: Get elements from the DOM
 const elements = {
+headerBoardName: document.getElementById('header-board-name'),
+columnDivs: document.querySelectorAll('column-div'),
+filterDiv: document.getElementById('filterDiv'), 
+hideSideBarBtn: document.getElementById('hide-side-bar-btn'), 
+showSideBarBtn: document.getElementById('show-side-bar-btn'), 
+themeSwitch: document.getElementById('switch'), 
+createNewTaskBtn: document.getElementById('create-task-btn'), 
+modalWindow: documen.querySelector('.modal-window'), 
+editTaskModal: document.querySelector('.edit-task-modal-window')
 
-}
+}; 
 
 let activeBoard = ""
 
