@@ -69,6 +69,11 @@ function displayBoards(boards) {
   });
 
 }
+const colTitles = {
+  todo:'todo',
+  doing:'doing', 
+  done:'done'
+}; 
 
 // Filters tasks corresponding to the board name and displays them on the DOM.
 // TASK: Fix Bugs
@@ -159,16 +164,12 @@ function setupEventListeners() {
   const cancelAddTaskBtn = document.getElementById('cancel-add-task-btn');
   cancelAddTaskBtn.addEventListener('click', () => {
     toggleModal(false);
-    elements.filterDiv.style.display = 'none'; // Also hide the filter overlay
-  });
-
+    elements.filterDiv.style.display= 'none';  // Also hide the filter overlay });
+  }); 
   // Clicking outside the modal to close it
-  window.addEventListener('click', (event) => {
-    if(event.target === elements.filterDiv){
+  elements.filterDiv.addEventListener('click', () => {
     toggleModal(false);
-    elements.filterDiv.style.display = 'none'; 
-    }
-  // Also hide the filter overlay
+    elements.filterDiv.style.display = 'none';// Also hide the filter overlay
   });
 
   // Show sidebar event listener
