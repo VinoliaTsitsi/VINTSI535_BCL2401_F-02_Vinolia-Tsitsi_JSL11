@@ -25,13 +25,13 @@ const elements = {
 
   // DOM elements for the Navigation Sidebar
   headerBoardName: document.getElementById('header-board-name'),
-  columnDivs: document.querySelectorAll('column-div'),
+  columnDivs: document.querySelectorAll('.column-div'),
   filterDiv: document.getElementById('filterDiv'), 
   hideSideBarBtn: document.getElementById('hide-side-bar-btn'), 
   showSideBarBtn: document.getElementById('show-side-bar-btn'), 
   themeSwitch: document.getElementById('switch'), 
-  createNewTaskBtn: document.getElementById('create-task-btn'), 
-  modalWindow: documen.querySelector('.modal-window'), 
+  createNewTaskBtn: document.getElementById('add-new-task-btn'), 
+  modalWindow: document.querySelector('.modal-window'), 
   editTaskModal: document.querySelector('.edit-task-modal-window'), 
   sideBar: document.querySelector('.side-bar'),
   sideLogoDiv: document.getElementById('logo'),
@@ -47,7 +47,10 @@ const elements = {
   descInput: document.getElementById('desc-input'),
   selectStatus: document.getElementById('select-status'),
   cancelAddTaskBtn: document.getElementById('cancel-add-task-btn'),
-  
+  editSelectStatus: document.getElementById('edit-select-status'),
+  editTaskDescInput: document.getElementById('edit-task-desc-input'),
+  editTaskTitleInput: document.getElementById('edit-task-title-input'),
+  editTaskForm: document.getElementById('edit-task-form'),
   }; 
 //Initialize activeBoard Varriable
 let activeBoard = ""
