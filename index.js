@@ -247,18 +247,10 @@ function addTask(event) {
 
 
 function toggleSidebar(show) {
- const sidebar = document.getElementById('side-bar-div');; 
- if (show){
-  sidebar.style.display= 'block';
-  elements.showSideBarBtn.style.display='none'; 
-
- }else{
-  sidebar.style.display= 'none';
-  elements.showSideBarBtn.style.display='block'; 
- }
-
+  elements.sideBar.style.display = show ? 'block' : 'none';
+    elements.showSideBarBtn.style.display = show ? 'none' : 'block';
 }
-
+const current
 function toggleTheme() {
  const isLightTheme= elements.thenSwitch.checked; 
  if(isLightTheme){
