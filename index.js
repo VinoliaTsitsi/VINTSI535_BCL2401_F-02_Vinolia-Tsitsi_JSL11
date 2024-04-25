@@ -7,7 +7,8 @@ import {initialData} from './initialData.js';
  * FIX BUGS!!!
  * **********************************************************************************************************************************************/
 
-// Function checks if local storage already has data, if not it loads initialData to localStorage
+// Function checks if local storage already has data,
+// if not it loads initialData to localStorage
 function initializeData() {
   if (!localStorage.getItem('tasks')) {
     localStorage.setItem('tasks', JSON.stringify(initialData)); 
@@ -16,54 +17,50 @@ function initializeData() {
     console.log('Data already exists in localStorage');
   }
 }
-
+//call initializaData function 
 initializeData();
 
 // TASK: Get elements from the DOM
 const elements = {
 
   // DOM elements for the Navigation Sidebar
-  headerBoardName: document.getElementById("header-board-name"),
+  headerBoardName: document.getElementById('header-board-name'),
+  columnDivs: document.querySelectorAll('column-div'),
+  filterDiv: document.getElementById('filterDiv'), 
+  hideSideBarBtn: document.getElementById('hide-side-bar-btn'), 
+  showSideBarBtn: document.getElementById('show-side-bar-btn'), 
+  themeSwitch: document.getElementById('switch'), 
+  createNewTaskBtn: document.getElementById('create-task-btn'), 
+  modalWindow: documen.querySelector('.modal-window'), 
+  editTaskModal: document.querySelector('.edit-task-modal-window'), 
   sideBar: document.querySelector('.side-bar'),
   sideLogoDiv: document.getElementById('logo'),
   sideBarDiv: document.getElementById('side-bar-div'),
   boardsNavLinksDiv: document.getElementById('boards-nav-links-div'),
-  themeSwitch: document.getElementById('switch'),
-  hideSideBarBtn: document.getElementById('hide-side-bar-btn'),
-  showSideBarBtn: document.getElementById('show-side-bar-btn'),
   header: document.getElementById('header'),
-  headerBoardName: document.getElementById('header-board-name'),
   dropdownBtn: document.getElementById('dropdownBtn'),
   addNewTaskBtn: document.getElementById('add-new-task-btn'),
   editBoardBtn: document.getElementById('edit-board-btn'),
   deleteBoardBtn: document.getElementById('deleteBoardBtn'),
-  columnDivs: document.querySelectorAll('.column-div'),
   tasksContainers: document.querySelectorAll('.tasks-container'),
-  modalWindow: document.getElementById('new-task-modal-window'),
   titleInput: document.getElementById('title-input'),
   descInput: document.getElementById('desc-input'),
   selectStatus: document.getElementById('select-status'),
-  createNewTaskBtn: document.getElementById('add-new-task-btn'),
   cancelAddTaskBtn: document.getElementById('cancel-add-task-btn'),
-  editTaskModal: document.querySelector('.edit-task-modal-window'),
-  editTaskForm: document.getElementById('edit-task-form'),
-  editTaskTitleInput: document.getElementById('edit-task-title-input'),
-  editTaskDescInput: document.getElementById('edit-task-desc-input'),
-  editSelectStatus: document.getElementById('edit-select-status'),
-  saveTaskChangesBtn: document.getElementById('save-task-changes-btn'),
-  cancelEditBtn: document.getElementById('cancel-edit-btn'),
-  deleteTaskBtn: document.getElementById('delete-task-btn'),
-  filterDiv: document.getElementById('filterDiv'),
-}
-
+  
+  }; 
+//Initialize activeBoard Varriable
 let activeBoard = ""
 
 // Extracts unique board names from tasks
 // TASK: FIX BUGS
+//function to fetch and display boards and tasks
 function fetchAndDisplayBoardsAndTasks() {
   const tasks = getTasks();
+  //Extracts unique board names from tasks
   const boards = [...new Set(tasks.map(task => task.board).filter(Boolean))];
   displayBoards(boards);
+  //if there are no boards, set activeBoard and display tasks for that board. 
   if (boards.length > 0) {
     const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"))
     activeBoard = localStorageBoard ? localStorageBoard :  boards[0]; 
@@ -75,6 +72,7 @@ function fetchAndDisplayBoardsAndTasks() {
 
 // Creates different boards in the DOM
 // TASK: Fix Bugs
+//function to display boards in the DOM 
 function displayBoards(boards) {
   const boardsContainer = document.getElementById("boards-nav-links-div");
   boardsContainer.innerHTML = ''; // Clears the container
@@ -82,6 +80,7 @@ function displayBoards(boards) {
     const boardElement = document.createElement("button");
     boardElement.textContent = board;
     boardElement.classList.add("board-btn");
+    //loop through boards and create buttons for each
     boardElement.addEventListener('click', () => { 
       elements.headerBoardName.textContent = board;
       filterAndDisplayTasksByBoard(board);
