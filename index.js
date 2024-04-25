@@ -250,17 +250,26 @@ function toggleSidebar(show) {
   elements.sideBar.style.display = show ? 'block' : 'none';
     elements.showSideBarBtn.style.display = show ? 'none' : 'block';
 }
-const current
-function toggleTheme() {
- const isLightTheme= elements.thenSwitch.checked; 
- if(isLightTheme){
-  localStorage.setItem('light-theme', 'enabled'); 
- }else{
-  localStorage.setItem('light-theme','disabled'); 
- }
- document.body.classList,toggle('light-theme', isLightTheme); 
-}
+//
+const currentMode = localStorage.getItem('mode') || 'light';
+let isLightMode = currentMode === 'light';
+//
+let sideLogoDivSrc = isLightMode ? './assets/logo-dark.svg' : './assets/logo-light.svg';
+elements.sideLogoDiv.src = sideLogoDivSrc;
 
+
+function toggleTheme() {
+ const isLightTheme= document.body.classList.contains('light-theme'); 
+ document.body.classList.toggle('light-theme'); 
+  localStorage.setItem('light-theme', !isLightTheme? 'enable': 'disable'); 
+
+  isLightMode = !isLightMode; // Toggle the mode
+  sideLogoDivSrc = isLightMode ? './assets/logo-dark.svg' : './assets/logo-light.svg';
+  elements.sideLogoDiv.src = sideLogoDivSrc;
+  localStorage.setItem('mode', isLightMode ? 'light' : 'dark'); // Store the selected mode in localStorage
+  localStorage.setItem('sideLogoDiv', sideLogoDivSrc); // Store the selected SVG source in localStorage
+
+}
 function openEditTaskModal(task) {
   // Set task details in modal inputs
   document.getElementById('taskTitleInput').value=task.title; 
@@ -290,16 +299,30 @@ function saveTaskChanges(taskId) {
 const updatedTask ={
   id: taskId, 
   title: newTitle, 
-  description: newDescription
+  description: newDescription,
+  board: activeBoard, 
 }; 
 
   // Update task using a hlper functoin
- updatedTask(updatedTask); 
+ updatedTask(taskId, updatedTask); 
 
   // Close the modal and refresh the UI to reflect the changes
+  location.reload
   toggleModal(false, elements.editTaskModal);
+
   refreshTasksUI();
 }
+
+const displayStoreTasks = () => {
+  const storedTasks = localStorage.getItem('tasks'); 
+  if (storedTasks){
+    const tasks = JSON.Parse(storedTasks); 
+  console.log(tasks); 
+} else {
+  console.log('No task stored')
+}
+}
+displayStoreTasks(); 
 
 /*************************************************************************************************************************************************/
 
