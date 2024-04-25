@@ -15,6 +15,7 @@ function initializeData() {
     console.log('Data already exists in localStorage');
   }
 }
+
 initializeData()
 // TASK: Get elements from the DOM
 const elements = {
@@ -26,7 +27,21 @@ showSideBarBtn: document.getElementById('show-side-bar-btn'),
 themeSwitch: document.getElementById('switch'), 
 createNewTaskBtn: document.getElementById('create-task-btn'), 
 modalWindow: documen.querySelector('.modal-window'), 
-editTaskModal: document.querySelector('.edit-task-modal-window')
+editTaskModal: document.querySelector('.edit-task-modal-window'), 
+sideBar: document.querySelector('.side-bar'),
+sideLogoDiv: document.getElementById('logo'),
+sideBarDiv: document.getElementById('side-bar-div'),
+boardsNavLinksDiv: document.getElementById('boards-nav-links-div'),
+header: document.getElementById('header'),
+dropdownBtn: document.getElementById('dropdownBtn'),
+addNewTaskBtn: document.getElementById('add-new-task-btn'),
+editBoardBtn: document.getElementById('edit-board-btn'),
+deleteBoardBtn: document.getElementById('deleteBoardBtn'),
+tasksContainers: document.querySelectorAll('.tasks-container'),
+titleInput: document.getElementById('title-input'),
+descInput: document.getElementById('desc-input'),
+selectStatus: document.getElementById('select-status'),
+cancelAddTaskBtn: document.getElementById('cancel-add-task-btn'),
 
 }; 
 
@@ -174,6 +189,9 @@ function setupEventListeners() {
   elements.hideSideBarBtn.addEventListener('click', () => toggleSidebar(false));
   elements.showSideBarBtn.addEventListener('click', () => toggleSidebar(true));
 
+  //show the button
+  elements.showSideBarBtn.style.display = 'block'; 
+
   // Theme switch event listener
   elements.themeSwitch.addEventListener('change', toggleTheme);
 
@@ -203,9 +221,18 @@ function addTask(event) {
   event.preventDefault(); 
 
   //Assign user input to the task object
-   // const task = {
-      //title: event.target.elements.title.value,
-      //description: event.target.elements.description.value,
+  const task_id = JSON.parse(localStorage.getItem('id'));
+  const titleInput = elements.titleInput.value;
+  const descInput = elements.descInput.value;
+  const selectStatus = elements.selectStatus.value;
+
+  const task = {
+    'id': task_id,
+    'title': titleInput,
+    'desc': descInput,
+    'status': selectStatus,
+    'board': activeBoard,
+  };
 
     const newTask = createNewTask(task);
     if (newTask) {
@@ -215,6 +242,7 @@ function addTask(event) {
       event.target.reset();
       refreshTasksUI();
     }
+    location.reload(); 
 }
 
 
