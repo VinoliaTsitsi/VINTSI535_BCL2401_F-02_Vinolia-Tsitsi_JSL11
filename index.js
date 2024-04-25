@@ -108,6 +108,7 @@ function filterAndDisplayTasksByBoard(boardName) {
       tasksContainer.appendChild(taskElement);
     });
   });
+}
 
 
 
@@ -152,9 +153,6 @@ function addTaskToUI(task) {
   
   tasksContainer.appendChild(taskElement); 
 }
-
-
-
 function setupEventListeners() {
   // Cancel editing task event listener
   const cancelEditBtn = document.getElementById('cancel-edit-btn');
@@ -205,10 +203,9 @@ function addTask(event) {
   event.preventDefault(); 
 
   //Assign user input to the task object
-    const task = {
-      title: event.target.elements.title.value,
-      description: event.target.elements.description.value,
-    };
+   // const task = {
+      //title: event.target.elements.title.value,
+      //description: event.target.elements.description.value,
 
     const newTask = createNewTask(task);
     if (newTask) {
@@ -222,19 +219,26 @@ function addTask(event) {
 
 
 function toggleSidebar(show) {
- const sidebar = document.getElementById('sidebar'); 
+ const sidebar = document.getElementById('side-bar-div');; 
  if (show){
   sidebar.style.display= 'block';
+  elements.showSideBarBtn.style.display='none'; 
+
  }else{
   sidebar.style.display= 'none';
+  elements.showSideBarBtn.style.display='block'; 
  }
+
 }
 
 function toggleTheme() {
-
- let body = body.document; 
-
- body.classList.toggle('dark-theme'); 
+ const isLightTheme= elements.thenSwitch.checked; 
+ if(isLightTheme){
+  localStorage.setItem('light-theme', 'enabled'); 
+ }else{
+  localStorage.setItem('light-theme','disabled'); 
+ }
+ document.body.classList,toggle('light-theme', isLightTheme); 
 }
 
 function openEditTaskModal(task) {
