@@ -263,16 +263,21 @@ toggleModal(false, elements.editTaskModal); // Show the edit task modal
 
 function saveTaskChanges(taskId) {
   // Get new user inputs
-  const newTitle=document.getElementById('edit-task-title-input').
+  const newTitle=document.getElementById('edit-task-title-input').value; 
+  const newDescription = document.getElementById('edit-task-description-input').value; 
 
   // Create an object with the updated task details
-
+const updatedTask ={
+  id: taskId, 
+  title: newTitle, 
+  description: newDescription
+}; 
 
   // Update task using a hlper functoin
- 
+ updatedTask(updatedTask); 
 
   // Close the modal and refresh the UI to reflect the changes
-
+  toggleModal(false, elements.editTaskModal);
   refreshTasksUI();
 }
 
@@ -283,10 +288,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function init() {
+  if (localStorage.getItem('sideLogoDiv')==='./assets/logo-light.svg'){
+    elements.sideLogoDiv.src = './assets/logo-light.svg'; 
+  }
   setupEventListeners();
   const showSidebar = localStorage.getItem('showSideBar') === 'true';
   toggleSidebar(showSidebar);
   const isLightTheme = localStorage.getItem('light-theme') === 'enabled';
+  elements.themeSwitch.checked= isLightTheme; 
   document.body.classList.toggle('light-theme', isLightTheme);
   fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
 }
